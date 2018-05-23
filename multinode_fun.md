@@ -5,6 +5,7 @@
 iex(node1@ip1)> defmodule X do
 iex(node1@ip1)>   def loop(fun) do
 iex(node1@ip1)>     fun.()
+iex(node1@ip1)>     loop(fun)
 iex(node1@ip1)>   end
 iex(node1@ip1)> end
 iex(node1@ip1)> child = spawn(fn -> X.loop(fn ->
