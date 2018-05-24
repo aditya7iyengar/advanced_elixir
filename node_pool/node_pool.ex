@@ -19,8 +19,8 @@ defmodule NodePool do
 
   defp ship_to_node(pid, n, fun, timeout) do
     inc_node_usage(pid, {n.sup_name, n.name})
-    task = Task.Supervisor.async({n.sup_name, n.name}, fun, timeout: :infinity)
-    Task.await(task, :infinity)
+    task = Task.Supervisor.async({n.sup_name, n.name}, fun, timeout: timeout)
+    Task.await(task, timeout)
     dec_node_usage(pid, {n.sup_name, n.name})
   end
 
